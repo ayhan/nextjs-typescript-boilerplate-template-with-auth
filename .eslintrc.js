@@ -1,0 +1,95 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    amd: true,
+    node: true,
+  },
+  extends: [
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "prettier",
+    "eslint:recommended",
+    "next",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+    project: "tsconfig.eslint.json",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  plugins: [
+    "react",
+    "simple-import-sort",
+    "prettier",
+    "@typescript-eslint",
+    "import",
+    "react-hooks",
+    "functional",
+  ],
+  rules: {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "@typescript-eslint/consistent-type-assertions": "warn",
+    "@typescript-eslint/restrict-template-expressions": "warn",
+    "@typescript-eslint/restrict-plus-operands": "warn",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "jsx-a11y/no-static-element-interactions": [
+      "off",
+      {
+        handlers: [
+          "onClick",
+          "onMouseDown",
+          "onMouseUp",
+          "onKeyPress",
+          "onKeyDown",
+          "onKeyUp",
+        ],
+        allowExpressionValues: false,
+      },
+    ],
+    "jsx-a11y/click-events-have-key-events": "off",
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        usePrettierrc: true,
+      },
+    ],
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/no-unescaped-entities": "off",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-namespace": "off",
+    "import/no-anonymous-default-export": "off",
+    "@typescript-eslint/promise-function-async": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+  },
+  overrides: [
+    {
+      rules: {
+        "no-undef": "off",
+      },
+      files: ["**/*.ts", "**/*.tsx"],
+    },
+  ],
+};

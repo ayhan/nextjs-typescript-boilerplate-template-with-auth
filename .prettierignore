@@ -1,0 +1,10 @@
+node_modules
+.next
+public
+.gitignore
+.build
+.next
+.git
+next-env.d.ts
+yarn.lock
+package-lock.json
