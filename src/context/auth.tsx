@@ -1,16 +1,15 @@
+import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies, setCookie } from "nookies";
 import { createContext, FC, useContext, useEffect, useState } from "react";
 import useSWR from "swr";
 
 import { ACCESS_TOKEN, IS_LOGIN } from "@/constants/auth";
-import { ILoginForm, IRegisterForm, IUser } from "@/models/user";
-import Axios from "@/service/instance";
+import { ILoginForm, IUser } from "@/models/user";
 
 interface IAuthContext {
   user: IUser | undefined;
   login: (body: ILoginForm) => Promise<void>;
-  register: (body: IRegisterForm) => Promise<void>;
   logout: () => void;
 }
 
@@ -37,7 +36,7 @@ const AuthProvider: FC<IProps> = (props) => {
 
   const login = async (body: ILoginForm) => {
     try {
-      const login = await Axios.post("/api/user/userPostLogin", body);
+      const login = await axios.post("/api/user/userPostLogin", body);
 
       setCookie(null, ACCESS_TOKEN, login?.data.access_token, {
         path: "/",
@@ -58,24 +57,6 @@ const AuthProvider: FC<IProps> = (props) => {
     }
   };
 
-  const register = async (body: IRegisterForm) => {
-    try {
-      const register = await Axios.post("/api/user/userPostRegister", body);
-
-      setCookie(null, ACCESS_TOKEN, register?.data.access_token, {
-        path: "/",
-        maxAge: 3600 * 1000 * 24 * 365,
-      });
-
-      return register;
-    } catch (error: any) {
-      console.error(error);
-      return error.response;
-    } finally {
-      console.log("Finally Register");
-    }
-  };
-
   const logout = () => {
     try {
       document.cookie =
@@ -93,7 +74,6 @@ const AuthProvider: FC<IProps> = (props) => {
       value={{
         login,
         logout,
-        register,
         user,
       }}
     >

@@ -3,12 +3,6 @@ export interface ILoginForm {
   password: string;
 }
 
-export interface IRegisterForm {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
 export interface IUser {
   email: string;
   name: string;
