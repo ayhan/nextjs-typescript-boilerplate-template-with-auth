@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies, setCookie } from "nookies";
 import { createContext, FC, useContext, useEffect, useState } from "react";
@@ -6,6 +5,7 @@ import useSWR from "swr";
 
 import { ACCESS_TOKEN, IS_LOGIN } from "@/constants/auth";
 import { ILoginForm, IUser } from "@/models/user";
+import API from "@/service/instance";
 
 interface IAuthContext {
   user: IUser | undefined;
@@ -36,7 +36,7 @@ const AuthProvider: FC<IProps> = (props) => {
 
   const login = async (body: ILoginForm) => {
     try {
-      const login = await axios.post("/api/user/userPostLogin", body);
+      const login = await API.post("/auth", body);
 
       setCookie(null, ACCESS_TOKEN, login?.data.access_token, {
         path: "/",
