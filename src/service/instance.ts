@@ -3,6 +3,9 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
+import { parseCookies } from "nookies";
+
+const cookies = parseCookies();
 
 const API = axios.create({
   baseURL: "?",
@@ -11,6 +14,7 @@ const API = axios.create({
 
 API.interceptors.request.use(
   (request: InternalAxiosRequestConfig) => {
+    request.headers.Authorization = `Bearer ${cookies?.access_token}`;
     return request;
   },
   (error: AxiosError) => {

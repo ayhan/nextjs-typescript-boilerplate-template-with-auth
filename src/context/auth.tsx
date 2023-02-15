@@ -27,7 +27,7 @@ const AuthProvider: FC<IProps> = (props) => {
   const [user, setUser] = useState<IUser | undefined>();
 
   const { data: userInfo } = useSWR<IUser>(
-    cookies?.access_token ? `/api/user/userGetInfo` : null,
+    cookies?.access_token ? `/user` : null,
   );
 
   useEffect(() => {
