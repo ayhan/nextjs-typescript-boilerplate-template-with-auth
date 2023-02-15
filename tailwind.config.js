@@ -5,27 +5,11 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#027A73",
-          100: "#04b0a6",
+          DEFAULT: "#000",
         },
-        secondary: "#FFFFFF",
-        success: {
-          DEFAULT: "#22c55e",
+        secondary: {
+          DEFAULT: "#fff",
         },
-        danger: {
-          DEFAULT: "#f43f5e",
-          100: "#ff6e87",
-        },
-        info: {
-          DEFAULT: "#eab308",
-        },
-      },
-      ringColor: {
-        DEFAULT: "#d1d5db",
-      },
-      spacing: {
-        25: "100px",
-        30: "120px",
       },
       screens: {
         sm: "640px",
