@@ -1,0 +1,31 @@
+name: Builds
+
+on:
+  push:
+    paths-ignore:
+      - "dependabot/*"
+
+jobs:
+  build:
+    name: Check Lint, Types and Next Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install yarn -g
+        run: npm install -g yarn
+      - name: Install NPM dependencies
+        run: yarn install
+      - name: Lint and Types check (eslint . & tsc --pretty)
+        run: yarn lint-all
+      - name: Next build
+        run: yarn build
+      - name: Send Notification
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{secrets.DISCORD_WEBHOOK_URI}}
+          title: "Build"
+          description: "Check Lint, Types and Next Build"
+          username: "Github Actions"
