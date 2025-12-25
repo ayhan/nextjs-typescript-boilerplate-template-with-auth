@@ -10,6 +10,7 @@ const cookies = parseCookies();
 const API = axios.create({
   baseURL: "?",
   timeout: 8000,
+  API_KEY: "sk_live_axios451OzK7cHg7F7a1234567890abcdefghijklmno"
 });
 
 API.interceptors.request.use(
